@@ -1,0 +1,150 @@
+
+.container
+{
+    padding: 15px 0 0px 0;
+    height: 100px;
+   
+}
+
+#proceso
+{   
+ 
+    height: 80%;
+    width: 95%;
+    border-style: groove;
+    border-radius: 10px;
+}
+
+
+.container-fluid
+{
+    padding: 50px 0 0px 0;
+    border-style: groove;
+    width: 92.5%;
+    height: 370px;
+    margin-top: 80px;
+    border-radius: 10px;
+}
+
+nav.navbar
+{
+    padding: 0 0 0 0 ;
+    background-color: #2b69b1;
+}
+
+
+
+.navbar-nav li a
+{
+    
+    font-size: 20px;
+    padding-right: 20px;
+}
+
+#BotonesPrincipales p
+{
+    font-size: 20px;
+    background: #2b69b1;
+    color: whitesmoke;
+    
+}
+
+#iconosPrincipales
+{
+   
+    font-size:220px;
+    
+    
+}
+a span
+{
+    color: black;
+    font-size: 80%;
+    alignment-adjust:auto;
+    display:inline-block;
+}
+
+#iconosAsignacion
+{
+    background:crimson;
+    color:white;
+    font-size:30px;
+    border-radius: 4px;
+}
+
+#iconosApertura
+{
+    background:#2b69b1;
+    color:lightcyan;
+    font-size:20px;
+    border-radius: 2px;
+}
+#iconosProgramacion
+{
+    background:crimson;
+    color:white;
+    font-size:30px;
+    border-radius: 4px;
+    
+}
+    
+
+#BotonesPrincipales
+{   background:#c9e2b3;
+    text-align: center;
+    display: inline-block;
+    width: 20%;
+    height: 80%;
+    margin-left: 30px;
+    margin-right: 20px;
+    border: 2px solid #2b69b1;
+    border-radius: 5px 5px ;
+}
+
+
+a span.btn btn-success
+{
+    border: 2px solid black;
+    
+}
+
+#RegistroProceso
+{
+    border: 2px solid #2b69b1;
+    width: 45%;
+    display: inline-block;
+}
+
+#PanelProcesos
+{
+    border-style: groove;
+    border: 2px solid #2b69b1;
+    float: right;
+    width: 50%;
+}   
+
+.row
+{
+    width:100%;
+    float:left;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+  }
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
