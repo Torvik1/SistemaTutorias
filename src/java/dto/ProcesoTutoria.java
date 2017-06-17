@@ -1,5 +1,5 @@
 
-package Modelos;
+package dto;
 
 public class ProcesoTutoria 
 {

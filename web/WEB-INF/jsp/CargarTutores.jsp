@@ -60,88 +60,21 @@
                                     <th>Codigo</th>
                                     <th>Nombres</th>
                                     <th>Apellidos</th>
-                                    <th>Email</th>
-                                    <th> </th>
+                                    <th>Telefono</th>
+                                 
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>001</td>
-                                    <td>Jorge</td>
-                                    <td>Guerra Guerra</td>
-                                    <td>jorge.guerra@unmsm.edu.pe</td>
-                                    <td>
-                                        <a href="" >
-                                          <span class="" id="iconosAsignacion"></span>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>002</td>
-                                    <td>Cesar</td>
-                                    <td>Luza Montero</td>
-                                    <td>cesar.luza@gmail.com</td>
-                                    <td >
-                                        <a href="" >
-                                        <span class="" id="iconosAsignacion"></span>
-                                        </a>
-                                    </td>
-                                </tr>
-                                 <tr>
-                                    <td>003</td>
-                                    <td>Victor</td>
-                                    <td>Bustamante Olivera</td>
-                                    <td>victor.bustamante@gmail.com</td>
-                                    <td >
-                                        <a href="" >
-                                        <span class="" id="iconosAsignacion"></span>
-                                        </a>
-                                    </td>
-                                </tr>
-                                 <tr>
-                                    <td>004</td>
-                                    <td>Luzmila</td>
-                                    <td>Pro Concepcion</td>
-                                    <td>luzmila.pro@gmail.com</td>
-                                    <td >
-                                        <a href="" >
-                                        <span class="" id="iconosAsignacion"></span>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>005</td>
-                                    <td>Armando David</td>
-                                    <td>Espinoza Robles</td>
-                                    <td>armando.espinoza@gmail.com</td>
-                                    <td >
-                                        <a href="" >
-                                        <span class="" id="iconosAsignacion"></span>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>006</td>
-                                    <td>Felix Armando</td>
-                                    <td>Fermin Perez</td>
-                                    <td>fermin.felix@gmail.com</td>
-                                    <td >
-                                        <a href="" >
-                                        <span class="" id="iconosAsignacion"></span>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>007</td>
-                                    <td>Javier</td>
-                                    <td>Gamboa Cruzado</td>
-                                    <td>javier.gamboa@gmail.com</td>
-                                    <td >
-                                        <a href="" >
-                                        <span class="" id="iconosAsignacion"></span>
-                                        </a>
-                                    </td>
-                                </tr>
+                                
+                                <c:forEach items="${valores}" var="valor">
+                                    <tr>
+                                        <td>${valor.id}</td>
+                                        <td>${valor.nombres}</td>
+                                        <td>${valor.apellidos}</td>
+                                        <td>${valor.telefono}</td>
+                                    <tr>
+                                </c:forEach>
+                                <
                             </tbody>
                         </table>
                     

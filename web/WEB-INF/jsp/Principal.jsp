@@ -33,7 +33,7 @@
                 <span class="icon-lock-open" id="iconosPrincipales"></span>
                 <p>Apertura de Proceso</p>
             </a>
-            <a href="<c:url value="/Principal/CargarTutores.htm"/>" class="button blue large" id="BotonesPrincipales">
+            <a href="<c:url value="/Principal/CargarTutores.htm?tipousuario=tutorando"/>" class="button blue large" id="BotonesPrincipales">
 		<span class="icon-users" id="iconosPrincipales"></span>
                 <p>Tutores</p>
             </a>

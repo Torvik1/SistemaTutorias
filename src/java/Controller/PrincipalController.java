@@ -1,9 +1,15 @@
 
 package Controller;
 
-import Modelos.Alumno;
-import Modelos.ProcesoTutoria;
-import Modelos.ProgramacionAcademica;
+import dao.DaoPersonas;
+import dao.implement.DaoPersonasimpl;
+import dto.Alumno;
+import dto.Persona;
+import dto.ProcesoTutoria;
+import dto.ProgramacionAcademica;
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,10 +49,14 @@ public class PrincipalController
        return asignacion;
    }
    
-   @RequestMapping("/Principal/CargarTutores.htm")
-   public ModelAndView CargarTutores()
+   @RequestMapping(value="/Principal/CargarTutores.htm",method =RequestMethod.GET)
+   public ModelAndView CargarTutores(HttpServletRequest request)
    {
        ModelAndView importar=new ModelAndView();
+       List<Persona> DatosTutores;
+       DaoPersonasimpl tutores=new DaoPersonasimpl();
+       DatosTutores=tutores.personasQry(request.getParameter("tipousuario"));
+       importar.addObject("valores", DatosTutores);
        importar.setViewName("CargarTutores");
        return importar;
       
