@@ -9,16 +9,31 @@ import java.sql.Date;
 
 
 public class Persona {
+
+   
 private String id;
 private String nombres;
 private String apellidos;
 private Date fecha_nacimiento;
 private String telefono;
+private String email;
+private String email2;
 private String direccion;
 
     public Persona() {
     }
 
+    public Persona(String id, String nombres, String apellidos, Date fecha_nacimiento, String telefono, String email, String email2, String direccion) {
+        this.id = id;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.fecha_nacimiento = fecha_nacimiento;
+        this.telefono = telefono;
+        this.email = email;
+        this.email2 = email2;
+        this.direccion = direccion;
+    }
+    
 
 
     public String getId() {
@@ -67,5 +82,21 @@ private String direccion;
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+    
+     public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail2() {
+        return email2;
+    }
+
+    public void setEmail2(String email2) {
+        this.email2 = email2;
     }
 }

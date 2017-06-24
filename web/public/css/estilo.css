@@ -1,4 +1,3 @@
-
 .container
 {
     padding: 15px 0 0px 0;
@@ -114,6 +113,23 @@ a span.btn btn-success
     width: 45%;
     display: inline-block;
 }
+#PanelCargarTutores
+{
+    border: 2px solid #2b69b1;
+    width: 35%;
+    display: inline-block;
+}
+
+
+#PanelTablaTutores
+{
+    border-style: groove;
+    border: 2px solid #2b69b1;
+    float: right;
+    overflow: scroll;
+    width: 60%;
+    height: 400px;
+}
 
 #PanelProcesos
 {
@@ -148,3 +164,4 @@ a span.btn btn-success
     cursor: inherit;
     display: block;
 }
+

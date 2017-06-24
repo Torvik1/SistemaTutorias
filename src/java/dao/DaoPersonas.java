@@ -13,7 +13,7 @@ public interface DaoPersonas
     
     public String personasDel(List<String> ids);
     
- //   public Persona personasGet(String idautor);
+    public Persona personasGet(String idautor);
     
    // public String personasUpd(Persona autores);
     

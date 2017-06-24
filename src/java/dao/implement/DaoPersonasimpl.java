@@ -32,7 +32,9 @@ public class DaoPersonasimpl implements DaoPersonas{
                 .append("persona_id,")
                 .append("persona_nombres,")
                 .append("persona_apellidos,")
-                .append("persona_telefono ")
+                .append("persona_telefono,")
+                .append("persona_email,")
+                .append("persona_email2 ")
                 .append("FROM persona as p inner join usuario as u ")
                 .append("on p.persona_id=u.persona_usuario_id ")
                 .append("where u.usuario_tipo='")
@@ -51,6 +53,8 @@ public class DaoPersonasimpl implements DaoPersonas{
                 personas.setNombres(rs.getString(2));
                 personas.setApellidos(rs.getString(3));
                 personas.setTelefono(rs.getString(4));
+                personas.setEmail(rs.getString(5));
+                personas.setEmail2(rs.getString(6));
                 list.add(personas);
             }
 
@@ -61,9 +65,88 @@ public class DaoPersonasimpl implements DaoPersonas{
         return list;
     }
     
+    @Override
+    public Persona personasGet(String persona_id) {
+        Persona persona = null;
+        sql.delete(0, sql.length())
+                .append("SELECT ")
+                .append("*FROM persona ")
+                .append("WHERE persona_id = ?");
+
+        try (Connection cn = db.getConnection();
+                PreparedStatement ps = cn.prepareStatement(sql.toString())) {
+
+            ps.setString(1, persona_id);
+
+            try (ResultSet rs = ps.executeQuery()) {
+
+                if (rs.next()) {
+                    persona = new Persona();
+
+                    persona.setId(rs.getString(1));
+                    persona.setNombres(rs.getString(2));
+                    persona.setApellidos(rs.getString(3));
+                    persona.setFecha_nacimiento(rs.getDate(4));
+                    persona.setTelefono(rs.getString(5));
+                    persona.setDireccion(rs.getString(6));
+                    persona.setEmail(rs.getString(7));
+                    persona.setEmail2(rs.getString(8));
+
+                } else {
+                    message = "fila de id " + persona_id + " no existe";
+                }
+
+            } catch (SQLException e) {
+                message = e.getMessage();
+            }
+
+        } catch (SQLException e) {
+            message = e.getMessage();
+        }
+
+        return persona;
+    }
+    
      @Override
-    public String personasIns(Persona personas) {
-        return "hola";
+    public String personasIns(Persona persona) {
+        sql.delete(0, sql.length())
+                .append("INSERT INTO persona(")
+                .append("persona_id, ")
+                .append("persona_nombres, ")
+                .append("persona_apellidos, ")
+                .append("persona_fn, ")
+                .append("persona_telefono, ")
+                .append("persona_direccion, ")
+                .append("persona_email, ")
+                .append("persona_email2")
+                .append(") VALUES(?,?,?,?,?,?,?,?)");
+
+        try (Connection cn = db.getConnection();
+                PreparedStatement ps = cn.prepareStatement(sql.toString())) {
+
+            ps.setString(1, persona.getId());
+            ps.setString(2, persona.getNombres());
+            ps.setString(3, persona.getApellidos());
+            ps.setDate(4,   persona.getFecha_nacimiento());
+            ps.setString(5, persona.getTelefono());
+            ps.setString(6, persona.getDireccion());
+            ps.setString(7, persona.getEmail());
+            ps.setString(8, persona.getEmail2());
+            int ctos = ps.executeUpdate();
+            if (ctos == 0) {
+                throw new SQLException("0 filas afectadas");
+            }
+            else
+            {
+                message="exito";
+                cn.close();
+            }
+
+        } catch (SQLException e) {
+            message = e.getMessage();
+        }
+
+        return message;
     }
     
     @Override

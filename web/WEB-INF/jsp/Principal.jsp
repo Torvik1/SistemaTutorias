@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta  charset="UTF-8"/>
-       <!-- <script src="<c:url value="public/js/jquery-3.2.1.min.js"/>" </script>-->
+       <!--<script src="<c:url value="public/js/jquery-3.2.1.min.js"/>" </script>-->
         <link rel="stylesheet" href="<c:url value="/public/css/estilo.css"/>"/>
         <link rel="stylesheet" href="<c:url value="/public/css/fonts/style.css"/>"/>
         <link rel="stylesheet" href="<c:url value="/public/css/bootstrap.css"/>"/>
@@ -33,7 +33,7 @@
                 <span class="icon-lock-open" id="iconosPrincipales"></span>
                 <p>Apertura de Proceso</p>
             </a>
-            <a href="<c:url value="/Principal/CargarTutores.htm?tipousuario=tutorando"/>" class="button blue large" id="BotonesPrincipales">
+            <a href="<c:url value="/Principal/CargarTutores.htm"/>" class="button blue large" id="BotonesPrincipales">
 		<span class="icon-users" id="iconosPrincipales"></span>
                 <p>Tutores</p>
             </a>

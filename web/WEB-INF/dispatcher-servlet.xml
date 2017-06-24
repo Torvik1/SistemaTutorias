@@ -21,12 +21,15 @@
             <props>
                 <prop key="index.htm">indexController</prop>
                 <prop key="Principal.htm">principalController</prop>
-                <prop key="/Principal/AperturarProceso.htm">principalController</prop>
-                <prop key="/Principal/ProgramacionAcademica.htm">principalController</prop>
-                <prop key="/Principal/AsignacionAlumnos.htm">principalController</prop>
-                <prop key="/Principal/CargarTutores.htm">principalController</prop>
-                <prop key="/Principal/CargarAlumnos.htm">principalController</prop>
-                <prop key="/Principal/Seguimiento.htm">principalController</prop>
+                <prop key="/Principal/AperturarProceso.htm">aperturarController</prop>
+                <prop key="/Principal/ProgramacionAcademica.htm">aperturarController</prop>
+                <prop key="/Principal/AsignacionAlumnos.htm">aperturarController</prop>
+                <prop key="/Principal/CargarTutores.htm">cargarTutoresController</prop>
+                <prop key="/Principal/Agregar.htm">cargarTutoresController</prop>
+                <prop key="tablaTutores.htm">cargarTutoresController</prop>
+                <prop key="/Principal/editTutor.htm">cargarTutoresController</prop>
+                <prop key="/Principal/CargarAlumnos.htm">cargarAlumnosController</prop>
+                <prop key="/Principal/Seguimiento.htm">seguimientoController</prop>
             </props>
         </property>
     </bean>
@@ -39,6 +42,10 @@
     <!--
     The index controller.
     -->
+    <bean name="seguimientoController" class="Controller.SeguimientoController"></bean>
+    <bean name="cargarTutoresController" class="Controller.CargarTutoresController"></bean>
+    <bean name="cargarAlumnosController" class="Controller.CargarAlumnosController"></bean>
+    <bean name="aperturarController" class="Controller.AperturarProcesoController"></bean>
     <bean name="principalController" class="Controller.PrincipalController"></bean>
     <bean name="indexController"
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"

@@ -7,12 +7,28 @@ public class Usuario
     private String id;
     private String username;
     private String password;
-    private String email;
     private String tipo;
+    private String persona_id;
+    public Usuario(String id, String username, String password, String tipo, String persona_id) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.tipo = tipo;
+        this.persona_id = persona_id;
+    }
+
+  
+    public Usuario(String id, String username, String password, String tipo) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.tipo = tipo;
+    }
+  
 
     public Usuario() {
     }
-
+    
     public String getId() {
         return id;
     }
@@ -36,15 +52,7 @@ public class Usuario
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
+    
     public String getTipo() {
         return tipo;
     }
@@ -52,6 +60,12 @@ public class Usuario
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-    
+      public String getPersona_id() {
+        return persona_id;
+    }
+
+    public void setPersona_id(String persona_id) {
+        this.persona_id = persona_id;
+    }
     
 }
