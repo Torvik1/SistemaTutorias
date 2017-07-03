@@ -29,17 +29,19 @@ public class DaoPersonasimpl implements DaoPersonas{
         List<Persona> list = null;
         sql.delete(0, sql.length())
                 .append("SELECT ")
-                .append("persona_id,")
-                .append("persona_nombres,")
-                .append("persona_apellidos,")
-                .append("persona_telefono,")
-                .append("persona_email,")
-                .append("persona_email2 ")
-                .append("FROM persona as p inner join usuario as u ")
-                .append("on p.persona_id=u.persona_usuario_id ")
-                .append("where u.usuario_tipo='")
+                .append("dni,")
+                .append("nombres,")
+                .append("apellidos,")
+                .append("fecha_nacimiento,")
+                .append("telefono,")
+                .append("direccion,")
+                .append("email_1,")
+                .append("email_2 ")
+                .append("FROM persona as p inner join user as u ")
+                .append("on p.dni=u.persona_dni ")
+                .append("where u.tipo_usuario='")
                 .append(tipoUsuario)
-                .append("'");
+                .append("' and u.estado='activo'");
         try (Connection cn = db.getConnection();
                 PreparedStatement ps = cn.prepareStatement(sql.toString());
                 ResultSet rs = ps.executeQuery()) {
@@ -49,12 +51,15 @@ public class DaoPersonasimpl implements DaoPersonas{
             while (rs.next()) {
                 Persona personas = new Persona();
 
-                personas.setId(rs.getString(1));
+                personas.setId(rs.getInt(1));
                 personas.setNombres(rs.getString(2));
                 personas.setApellidos(rs.getString(3));
-                personas.setTelefono(rs.getString(4));
-                personas.setEmail(rs.getString(5));
-                personas.setEmail2(rs.getString(6));
+                personas.setFecha_nacimiento(rs.getDate(4));
+                personas.setTelefono(rs.getString(5));
+                personas.setDireccion(rs.getString(6));
+                personas.setEmail(rs.getString(7));
+                personas.setEmail2(rs.getString(8));
+                
                 list.add(personas);
             }
 
@@ -83,7 +88,7 @@ public class DaoPersonasimpl implements DaoPersonas{
                 if (rs.next()) {
                     persona = new Persona();
 
-                    persona.setId(rs.getString(1));
+                    persona.setId(rs.getInt(1));
                     persona.setNombres(rs.getString(2));
                     persona.setApellidos(rs.getString(3));
                     persona.setFecha_nacimiento(rs.getDate(4));
@@ -111,23 +116,23 @@ public class DaoPersonasimpl implements DaoPersonas{
     public String personasIns(Persona persona) {
         sql.delete(0, sql.length())
                 .append("INSERT INTO persona(")
-                .append("persona_id, ")
-                .append("persona_nombres, ")
-                .append("persona_apellidos, ")
-                .append("persona_fn, ")
-                .append("persona_telefono, ")
-                .append("persona_direccion, ")
-                .append("persona_email, ")
-                .append("persona_email2")
+                .append("dni, ")
+                .append("nombres, ")
+                .append("apellidos, ")
+                .append("fecha_nacimiento, ")
+                .append("telefono, ")
+                .append("direccion, ")
+                .append("email_1, ")
+                .append("email_2")
                 .append(") VALUES(?,?,?,?,?,?,?,?)");
 
         try (Connection cn = db.getConnection();
                 PreparedStatement ps = cn.prepareStatement(sql.toString())) {
 
-            ps.setString(1, persona.getId());
+            ps.setInt(1, persona.getId());
             ps.setString(2, persona.getNombres());
             ps.setString(3, persona.getApellidos());
-            ps.setDate(4,   persona.getFecha_nacimiento());
+            ps.setDate(4,  persona.getFecha_nacimiento());
             ps.setString(5, persona.getTelefono());
             ps.setString(6, persona.getDireccion());
             ps.setString(7, persona.getEmail());
@@ -149,8 +154,45 @@ public class DaoPersonasimpl implements DaoPersonas{
         return message;
     }
     
+     @Override
+    public String personaUpd(Persona persona) {
+        sql.delete(0, sql.length())
+                .append("UPDATE persona SET ")
+                .append("nombres = ?,")
+                .append("apellidos = ?,")
+                .append("fecha_nacimiento = ?,")
+                .append("telefono = ?,")
+                .append("direccion = ?,")
+                .append("email_1 = ?,")
+                .append("email_2 = ? ")
+                .append("WHERE dni = ?");
+
+        try (Connection cn = db.getConnection();
+                PreparedStatement ps = cn.prepareStatement(sql.toString())) {
+                ps.setString(1,persona.getNombres());
+                ps.setString(2,persona.getApellidos());
+                ps.setDate(3,persona.getFecha_nacimiento());
+                ps.setString(4,persona.getTelefono());
+                ps.setString(5,persona.getDireccion());
+                ps.setString(6,persona.getEmail());
+                ps.setString(7,persona.getEmail2());
+                ps.setInt(8,persona.getId());
+          
+
+            int ctos = ps.executeUpdate();
+            if (ctos == 0) {
+                throw new SQLException("0 filas afectadas");
+            }
+
+        } catch (SQLException e) {
+            message = e.getMessage();
+        }
+
+        return message;
+    }
+    
     @Override
-    public String personasDel(List<String> ids) {
+    public String personasDel(String ids) {
     return "hola";
     }
     

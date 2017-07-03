@@ -25,23 +25,27 @@ public class DaoUsuarioimpl implements DaoUsuarios
      @Override
     public String usuarioIns(Usuario usuario) {
         sql.delete(0, sql.length())
-                .append("INSERT INTO usuario(")
-                .append("usuario_id, ")
-                .append("usuario_username, ")
-                .append("usuario_password, ")
-                .append("persona_usuario_id, ")
-                .append("usuario_tipo")
-                .append(") VALUES(?,?,?,?,?)");
+                .append("INSERT INTO user(")
+                .append("codigo, ")
+                .append("username, ")
+                .append("password, ")
+                .append("perfil_oid, ")
+                .append("persona_dni, ")
+                .append("estado, ")
+                .append("tipo_usuario")
+                .append(") VALUES(?,?,?,?,?,?,?)");
 
         try (Connection cn = db.getConnection();
                 PreparedStatement ps = cn.prepareStatement(sql.toString())) {
 
           
-            ps.setString(1, usuario.getId());
+            ps.setInt(1, usuario.getId());
             ps.setString(2, usuario.getUsername());
             ps.setString(3, usuario.getPassword());
-            ps.setString(4, usuario.getPersona_id());
-            ps.setString(5, usuario.getTipo());
+            ps.setInt(4,1); 
+            ps.setInt(5,usuario.getPersona_id());
+            ps.setString(6, usuario.getEstado());
+            ps.setString(7, usuario.getTipo());  
             int ctos = ps.executeUpdate();
             if (ctos == 0) {
                 throw new SQLException("0 filas afectadas");
@@ -63,9 +67,30 @@ public class DaoUsuarioimpl implements DaoUsuarios
     
     
     @Override
-    public String usuarioDel(List<String> ids)
+    public String usuarioDel(Usuario user)
     {
-        return "hola";
+        
+        sql.delete(0, sql.length())
+                .append("UPDATE user SET ")
+                .append("estado = ? ")
+                .append("WHERE persona_dni = ?");
+
+        try (Connection cn = db.getConnection();
+                PreparedStatement ps = cn.prepareStatement(sql.toString())) {
+
+            ps.setString(1, user.getEstado());
+            ps.setInt(2, user.getPersona_id());
+
+            int ctos = ps.executeUpdate();
+            if (ctos == 0) {
+                throw new SQLException("0 filas afectadas");
+            }
+
+        } catch (SQLException e) {
+            message = e.getMessage();
+        }
+
+        return message;
     }
     
     @Override

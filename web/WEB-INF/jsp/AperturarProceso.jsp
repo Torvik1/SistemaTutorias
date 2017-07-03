@@ -35,22 +35,27 @@
                           Formulario
                         </div>
                         <div class="panel-body">
-                            <form:form >
+                            <form:form role="form" action="/TutoriaFisi/Principal/AgregarProceso.htm" method="POST">
                             <h1>Nuevo Proceso de Tutoria</h1>
                             <p>
-                                <form:label path="codigoperiodo">Codigo Periodo:</form:label>
-                                <form:input path="codigoperiodo" cssClass="form-control"/>
+                                <label>Periodo Academico:</label>
+                                <input type="text" class="form-control"   name="periodo">
                             </p>
                             <p>
-                                <form:label path="periodo">Periodo Academico:</form:label>
-                                <form:input path="periodo" cssClass="form-control"/>
+                                <label >Ley Universitaria:</label>
+                                <input type="text" class="form-control"  name="ley">
                             </p>
                             <p>
-                                <form:label path="leyuniversitaria">Ley Universitaria:</form:label>
-                                <form:input path="leyuniversitaria" cssClass="form-control"/>
+                                <label>Fecha de Apertura:</label>
+                                <input type="text" class="form-control"  name="fapertura">
+                            </p>
+     
+                            <p>
+                                <label >Fecha de Clausura</label>
+                               <input type="text" class="form-control" name="fclausura">
                             </p>
                         <hr/>
-                            <button type="button" class="btn btn-danger btn-lg">
+                            <button type="submit" class="btn btn-danger">
                              <span>Guardar </span>  
                              <span class="glyphicon glyphicon-floppy-disk"></span>
                             </button>
@@ -68,40 +73,34 @@
                         <table class="table table-bordered table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Codigo</th>
-                                    <th>Periodo Academico</th>
-                                    <th>Ley Universitaria</th>
+                                    
+                                    <th>Periodo Aca.</th>
+                                    <th>Ley Univ.</th>
+                                    <th>FechaIn</th>
+                                    <th>FechaFn</th>
                                     <th>Estado</th>
-                                    <th>Programacion</th>
+                                    <th>Prog.</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                
+                                <c:forEach items="${valores}" var="valor">
                                 <tr>
-                                    <td>Proceso001</td>
-                                    <td>2015-2</td>
-                                    <td>30220-2014</td>
+                                    <td>${valor.periodo}</td>
+                                    <td>${valor.leyuniversitaria}</td>
+                                    <td>${valor.fechaApertura}</td>
+                                    <td>${valor.fechaClausura}</td>
+                                    
                                     <td>
-                                        <label class="icon-lock"> Cerrado</label>
+                                        <label class="icon-lock">${valor.estado}</label>
                                     </td>
                                     <td style="text-align: center; padding-top: 2px">
-                                        <a href="<c:url value="/Principal/ProgramacionAcademica.htm"/>" class="btn">
+                                        <a href="<c:url value="/Principal/ProgramacionAcademica.htm?id=${valor.id}"/>" class="btn">
                                           <span class="icon-list" id="iconosApertura"></span>
                                         </a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>Proceso002</td>
-                                    <td>2016-1</td>
-                                    <td>30220-2014</td>
-                                    <td>
-                                        <label class="icon-lock-open"> Abierto</label>
-                                    </td>
-                                    <td style="text-align: center; padding-top: 2px">
-                                        <a href="<c:url value="/ProgramacionAcademica.htm"/>" class="btn">
-                                        <span class="icon-list" id="iconosApertura"></span>
-                                        </a>
-                                    </td>
-                                </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                     

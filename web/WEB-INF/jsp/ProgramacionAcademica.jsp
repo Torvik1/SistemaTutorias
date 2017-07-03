@@ -40,33 +40,20 @@
                             <h2>Programacion Academica</h2>
                             <p>
                                
-                            <form:label path="curso"> Curso</form:label>
-                            <form:select path="curso" cssClass="form-control">
-                            <form:option value="0">Seleccione Curso..</form:option>
-                            <form:option value="1">Algoritmica 1</form:option>
-                            <form:option value="2">Matematica Discreta</form:option>
-                            <form:option value="3">Ingenieria de Software</form:option>
-                            </form:select>
+                            <label> Curso<label>
+                            <select  cssClass="form-control">
+                            <option value="0">Seleccione Curso..</option>
+                           
+                            </select>
                 
                             </p>
                             <p>
-                                <form:label path="profesor">Profesor:</form:label>
-                                <form:input path="profesor" cssClass="form-control"/>
+                                <label >Profesor:</label>
+                                <input  cssClass="form-control" />
                             </p>
-                            <p>
-                                <form:label path="horainicio">Hora Inicio:</form:label>
-                                <form:input path="horainicio" cssClass="form-control"/>
-                            </p>
-                             <p>
-                                <form:label path="horafin">Hora Fin:</form:label>
-                                <form:input path="horafin" cssClass="form-control"/>
-                            </p>
-                            <p>
-                                <form:label path="dia">Dia:</form:label>
-                                <form:input path="dia" cssClass="form-control"/>
-                            </p>
+                           
                         <hr/>
-                            <button type="button" class="btn btn-danger btn-lg">
+                            <button type="button" class="btn btn-danger">
                              <span>Guardar </span>  
                              <span class="glyphicon glyphicon-floppy-disk"></span>
                             </button>
@@ -92,28 +79,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Algoritmica 1</td>
-                                    <td>Salinas</td>
-                                    <td>3pm-5pm</td>
-                                    <td>Jueves</td>
-                                    <td style="text-align: center; padding-top: 1px">
-                                        <a href="<c:url value="/Principal/AsignacionAlumnos.htm"/>" class="btn">
-                                          <span class="icon-add-user" id="iconosProgramacion"></span>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Ecuaciones Diferenciales</td>
-                                    <td>Yauri</td>
-                                    <td>2pm-4pm</td>
-                                    <td>Martes</td>
-                                    <td style="text-align: center; padding-top: 1px">
-                                        <a href="<c:url value="/AsignacionAlumnos.htm"/>" class="btn">
-                                        <span class="icon-add-user" id="iconosProgramacion"></span>
-                                        </a>
-                                    </td>
-                                </tr>
+                            <td> </td>
+                              
                             </tbody>
                         </table>
                     

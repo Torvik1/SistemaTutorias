@@ -1,28 +1,44 @@
 
 package dto;
 
+import java.util.Date;
+
 public class ProcesoTutoria 
 {
-    String codigoperiodo;
-    String periodo;
-    String leyuniversitaria;
+     int id;
+     String periodo;
+     String leyuniversitaria;
 
+    
+     String fechaApertura;
+     String  fechaClausura;
+     String estado;
     public ProcesoTutoria() {
     }
 
-    public ProcesoTutoria(String codigoperiodo, String periodo, String leyuniversitaria) {
-        this.codigoperiodo = codigoperiodo;
+    public ProcesoTutoria( int id,String periodo, String leyuniversitaria, String fechaApertura, String fechaClausura,String estado) {
+        this.id=id;
         this.periodo = periodo;
         this.leyuniversitaria = leyuniversitaria;
     }
 
-    public String getCodigoperiodo() {
-        return codigoperiodo;
+    public ProcesoTutoria( String periodo, String leyuniversitaria, String fechaApertura, String fechaClausura,String estado) {
+        
+        this.periodo = periodo;
+        this.leyuniversitaria = leyuniversitaria;
+        this.fechaApertura = fechaApertura;
+        this.fechaClausura = fechaClausura;
+        this.estado=estado;
     }
 
-    public void setCodigoperiodo(String codigoperiodo) {
-        this.codigoperiodo = codigoperiodo;
+  public int getId() {
+        return id;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+  
 
     public String getperiodo() {
         return periodo;
@@ -38,6 +54,30 @@ public class ProcesoTutoria
 
     public void setLeyuniversitaria(String leyuniversitaria) {
         this.leyuniversitaria = leyuniversitaria;
+    }
+
+    public String getFechaApertura() {
+        return fechaApertura;
+    }
+
+    public void setFechaApertura(String fechaApertura) {
+        this.fechaApertura = fechaApertura;
+    }
+
+    public String getFechaClausura() {
+        return fechaClausura;
+    }
+
+    public void setFechaClausura (String fechaClausura) {
+        this.fechaClausura = fechaClausura;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
     
     

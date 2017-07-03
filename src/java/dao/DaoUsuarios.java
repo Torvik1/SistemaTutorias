@@ -15,7 +15,7 @@ public interface DaoUsuarios {
     
     public String usuarioIns(Usuario usuario);
     
-    public String usuarioDel(List<String> ids);
+    public String usuarioDel(Usuario usuario);
     
     public Usuario usuarioGet(String idautor);
     

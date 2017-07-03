@@ -4,36 +4,34 @@ package dto;
 
 public class Usuario 
 {
-    private String id;
+    private int id;
     private String username;
     private String password;
     private String tipo;
-    private String persona_id;
-    public Usuario(String id, String username, String password, String tipo, String persona_id) {
+    private int persona_id;
+    private String estado;
+    
+    public Usuario(int id, String username, String password, String tipo, int persona_id,String estado) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.tipo = tipo;
         this.persona_id = persona_id;
+        this.estado=estado;
     }
 
   
-    public Usuario(String id, String username, String password, String tipo) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.tipo = tipo;
-    }
+    
   
 
     public Usuario() {
     }
     
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -60,12 +58,18 @@ public class Usuario
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-      public String getPersona_id() {
+      public int getPersona_id() {
         return persona_id;
     }
 
-    public void setPersona_id(String persona_id) {
+    public void setPersona_id(int persona_id) {
         this.persona_id = persona_id;
     }
-    
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 }

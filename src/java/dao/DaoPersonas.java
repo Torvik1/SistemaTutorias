@@ -11,11 +11,11 @@ public interface DaoPersonas
     
     public String personasIns(Persona persona);
     
-    public String personasDel(List<String> ids);
+    public String personasDel(String ids);
     
     public Persona personasGet(String idautor);
     
-   // public String personasUpd(Persona autores);
+   public String personaUpd(Persona autores);
     
    // public List<Object[]> personasCbo();
     

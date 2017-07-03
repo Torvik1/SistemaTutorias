@@ -36,18 +36,7 @@ public class CargarTutoresController {
       
    }
    
-   @RequestMapping(value="/Principal/editTutor.htm",method=RequestMethod.GET)
-   public ModelAndView editTutor(HttpServletRequest request)
-   {   Persona DatosPersona;
-       DaoPersonasimpl persona=new DaoPersonasimpl();
-       String id=request.getParameter("id");
-       DatosPersona=persona.personasGet(id);
-       ModelAndView editar=new ModelAndView();
-       editar.setViewName("editTutor");
-       editar.addObject("persona",new Persona(id,DatosPersona.getNombres(),DatosPersona.getApellidos(),DatosPersona.getFecha_nacimiento(),DatosPersona.getTelefono(),DatosPersona.getEmail(),DatosPersona.getEmail2(),DatosPersona.getDireccion()));
-       return editar;
-       
-   }
+  
    
  /*  @RequestMapping("tablaTutores.htm")
    public ModelAndView cargarTabla()
@@ -61,10 +50,24 @@ public class CargarTutoresController {
    }*/
    
    
-     @RequestMapping(value="/Principal/editTutor.htm",method=RequestMethod.POST)
-     public ModelAndView es( HttpServletRequest request )
+     @RequestMapping(value="/Principal/Editar.htm",method=RequestMethod.POST)
+     public String update(
+      @RequestParam("codigo") String codigo,
+        @RequestParam("nombres") String nombres,
+        @RequestParam("apellidos") String apellidos,
+        @RequestParam("fnacimiento") String fnacimiento,
+        @RequestParam("telefono") String telefono,
+        @RequestParam("direccion") String direccion,
+        @RequestParam("email") String email,
+        @RequestParam("email2") String email2
+     )
      {
-         return new ModelAndView("redirect:/Principal/CargarTutores.htm");
+         int codigo2=Integer.parseInt(codigo);
+         Persona persona=new Persona(codigo2,nombres,apellidos,aDate2(fnacimiento),telefono,email,email2,direccion);
+         String mensaje=new DaoPersonasimpl().personaUpd(persona);
+         System.out.print(mensaje);
+                 
+         return ("redirect:/Principal/CargarTutores.htm");
      }
      
      
@@ -83,8 +86,11 @@ public class CargarTutoresController {
         @RequestParam("password") String password
         )
      {
-         Usuario usuario=new Usuario(id,username,password,"tutor",codigo);
-         Persona persona=new Persona(codigo,nombres,apellidos,aDate(fnacimiento),telefono,email,email2,direccion);
+         int codigo2=Integer.parseInt(codigo);
+         int id2=Integer.parseInt(id);
+         
+         Usuario usuario=new Usuario(id2,username,password,"tutor",codigo2,"activo");
+         Persona persona=new Persona(codigo2,nombres,apellidos,aDate(fnacimiento),telefono,email,email2,direccion);
          String mensaje=new DaoPersonasimpl().personasIns(persona);
          String mensaje2=new DaoUsuarioimpl().usuarioIns(usuario);
          System.out.println(mensaje+mensaje2);
@@ -92,11 +98,39 @@ public class CargarTutoresController {
          return "redirect:/Principal/CargarTutores.htm";
      }
      
+        @RequestMapping(value = "/Principal/Eliminar.htm",method=RequestMethod.POST)
+        public String eliminar(@RequestParam("codigo") String codigo )
+        {
+            Usuario user=new Usuario();
+            user.setPersona_id(Integer.parseInt(codigo));
+            user.setEstado("inactivo");
+            String mensaje=new DaoUsuarioimpl().usuarioDel(user);
+            System.out.println(mensaje);
+            
+            return "redirect:/Principal/CargarTutores.htm";
+        }
+        
+     
      
      public static Date aDate(String fecha) {
         Date result = null;
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        sdf.setLenient(false);//No permite ingresar fechas u horas incorrectas
+
+        try {
+            java.util.Date utilDate = sdf.parse(fecha);
+            result = new java.sql.Date(utilDate.getTime());
+
+        } catch (ParseException ex) {
+        }
+
+        return result;
+    }
+     public static Date aDate2(String fecha) {
+        Date result = null;
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         sdf.setLenient(false);//No permite ingresar fechas u horas incorrectas
 
         try {

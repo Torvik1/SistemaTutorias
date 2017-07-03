@@ -11,7 +11,7 @@ import java.sql.Date;
 public class Persona {
 
    
-private String id;
+private int id;
 private String nombres;
 private String apellidos;
 private Date fecha_nacimiento;
@@ -23,7 +23,7 @@ private String direccion;
     public Persona() {
     }
 
-    public Persona(String id, String nombres, String apellidos, Date fecha_nacimiento, String telefono, String email, String email2, String direccion) {
+    public Persona(int id, String nombres, String apellidos, Date fecha_nacimiento, String telefono, String email, String email2, String direccion) {
         this.id = id;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -36,11 +36,11 @@ private String direccion;
     
 
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

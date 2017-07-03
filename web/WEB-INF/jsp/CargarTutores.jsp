@@ -47,56 +47,142 @@
                             </form:form>
                            
                          </div>
-                         
-        
                       </div>
             
                     
-                <div class="panel panel-primary" id="PanelTablaTutores">
-                     <a href="#ventana1" class="btn btn-primary " data-toggle="modal" >Añadir Usuario</a> 
-                   <div class="panel-heading">
-                          Lista de Tutores
-                        </div >
-                        <table class="table table-bordered table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Codigo</th>
-                                    <th>Nombres</th>
-                                    <th>Apellidos</th>
-                                    <th>Telefono</th>
-                                    <th>Emails</th>
-                                    <th> </th>
-                                </tr>
-                            </thead>
-                            
+    <div class="panel panel-primary" id="PanelTablaTutores">
+    <a href="#ventana1" class="btn btn-primary " data-toggle="modal" >Añadir Usuario</a> 
+       <div class="panel-heading">
+        Lista de Tutores
+        </div >
+            <table class="table table-bordered table-striped table-bordered">
+             <thead>
+             <tr>
+             <th>Codigo</th>
+             <th>Nombres</th>
+             <th>Apellidos</th>
+             <th>Telefono</th>
+             <th>Emails</th>
+             <th> </th>
+             <th> </th>
+             </tr>
+             </thead>
+             <tbody>
+             <c:forEach items="${valores}" var="valor">
+              <tr>
+                <td>${valor.id}</td>
+                <td>${valor.nombres}</td>
+                <td>${valor.apellidos}</td>
+                <td>${valor.telefono}</td>
+                <td>
+                    <select  cssClass="form-control">
+                    <option value="0">${valor.email}</option>
+                    <option value="1">${valor.email2}</option>
+                    </select>
+                    </td>
+                    <td>
+                        <a href="#${valor.id}" data-toggle="modal" class="icon-pencil btn btn-danger btn"></a>
+                                                
+                    <div class="modal fade" id="${valor.id}">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                              <button tytle="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                              <h4 class="modal-title"> Modificar datos del Tutor </h4>
+                          </div>
+                          <form:form role="form" action="/TutoriaFisi/Principal/Editar.htm" method="POST" class="form-horizontal">
+                              <input type="hidden" name="codigo" value="${valor.id}">
+                                <div class="modal-body">
+                                 <div class="form-group">
+                                   <label for="nombres" class="control-label col-md-2 col-left">Nombres:</label>
+                                    <div class="col-md-10">
+                                    <input type="text" class="form-control" id="nombres" value="${valor.nombres}" name="nombres">
+                                    </div>
+                                 </div>
+                                <div class="form-group">
+                                   <label for="apellidos" class="control-label col-md-2 col-left">Apellidos:</label>
+                                    <div class="col-md-10">
+                                    <input type="text" class="form-control" id="apellidos" value="${valor.apellidos}" name="apellidos">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                   <label for="fnacimiento" class="control-label col-md-2 col-left">Fecha de Nacimiento:</label>
+                                    <div class="col-md-10">
+                                    <input type="text" class="form-control"  value="${valor.fecha_nacimiento.toString()}" name="fnacimiento">
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                   <label for="telefono" class="control-label col-md-2 col-left">Telefono:</label>
+                                    <div class="col-md-10">
+                                    <input type="text" class="form-control"  value="${valor.telefono}" name="telefono">
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                   <label for="direccion" class="control-label col-md-2 col-left">Direccion:</label>
+                                    <div class="col-md-10">
+                                    <input type="text" class="form-control"  value="${valor.direccion}" name="direccion">
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                   <label for="email2" class="control-label col-md-2 col-left">Email:</label>
+                                    <div class="col-md-10">
+                                    <input type="text" class="form-control"  value="${valor.email}" name="email">
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                   <label for="email2" class="control-label col-md-2 col-left">Email2:</label>
+                                    <div class="col-md-10">
+                                    <input type="text" class="form-control"  value="${valor.email2}" name="email2">
+                                    </div>
+                                </div>
+                                    <div class="modal-footer">
+                                   <button type="submit" class="btn btn-primary">Guardar</button>
+                                   <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>                       
+                                </div>
+                                </div>
+                            </form:form>  
+                       </div>
+                    </div>
+                    </div>
+                                    
+                    </td>
+                     <td>
+                       <a href="#${valor.telefono}"  data-toggle="modal" class="icon-trash btn btn-danger btn" id="btnEliminar"></a>
                        
-                                <tbody>
-                                <c:forEach items="${valores}" var="valor">
-                                    <tr>
-                                        <td>${valor.id}</td>
-                                        <td>${valor.nombres}</td>
-                                        <td>${valor.apellidos}</td>
-                                        <td>${valor.telefono}</td>
-                                        <td>
-                                         <select  cssClass="form-control">
-                                         <option value="0">${valor.email}</option>
-                                         <option value="1">${valor.email2}</option>
-                                         </select>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="icon-trash btn btn-danger btn-lg">
-                                        </td>
-                                    <tr>
-                                </c:forEach>
-                                        </tbody>
-                             </table>
-                   
+                         <div class="modal fade" id="${valor.telefono}">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button tytle="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h2 class="modal-title"> Importante!! </h2>
+                                    </div>
+                                        <form:form role="form" action="/TutoriaFisi/Principal/Eliminar.htm" method="POST" class="form-horizontal">
+                                            <input type="hidden" name="codigo" value="${valor.id}">
+                                            <div class="modal-body">
+                                                <p>
+                                                    <label>Desea Eliminar al Tutor: ${valor.nombres} ${valor.apellidos}  </label>
+                                                </p>
+                                                <div class="modal-footer">
+                                                 <button type="submit" class="btn btn-primary">Comfirmar</button>
+                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                                </div>
+                                            </div>
+                                        </form:form>
+                                    </div>
+                            </div>
                          </div>
+                      </td>
+                                    </tr>
+                  </c:forEach>
+                 </tbody>
+                </table>
+                   
+              </div>
         </div>
       
       
                             
-           <a href="#ventana1" class="btn btn-primary " data-toggle="modal" >Añadir Usuario</a> 
+          
            
            <div class="modal fade" id="ventana1" >
                         <div class="modal-dialog">
@@ -178,7 +264,7 @@
                                          <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary">Guardar</button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                    </div> 
+                                        </div> 
                                     </div>
                                 </form:form>
                             </div>
@@ -188,6 +274,12 @@
     </body>
     
     <script type="text/javascript">
+        
+        
+        
+        
+        
+        
         $("#btn-ajax").click(function()
         {
             $.ajax(

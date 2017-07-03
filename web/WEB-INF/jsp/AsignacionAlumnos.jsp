@@ -79,7 +79,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>12200015</td>
+                                    <td></td>
                                     <td>Pierina</td>
                                     <td>Gonzales Aburto</td>
                                     <td>pierina.gonzales@unmsm.edu.pe</td>

@@ -25,7 +25,7 @@ public class ConectaDb {
         return cn;
     }
     
-    private final String url = "jdbc:mysql://localhost:3306/usuarios";
+    private final String url = "jdbc:mysql://localhost:3306/bdtutoria1";
     private final String driver = "com.mysql.jdbc.Driver";
     private final String user = "root";
     private final String password = "root";

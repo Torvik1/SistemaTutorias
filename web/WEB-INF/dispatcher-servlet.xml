@@ -22,12 +22,14 @@
                 <prop key="index.htm">indexController</prop>
                 <prop key="Principal.htm">principalController</prop>
                 <prop key="/Principal/AperturarProceso.htm">aperturarController</prop>
+                <prop key="/Principal/AgregarProceso.htm">aperturarController</prop>
                 <prop key="/Principal/ProgramacionAcademica.htm">aperturarController</prop>
                 <prop key="/Principal/AsignacionAlumnos.htm">aperturarController</prop>
                 <prop key="/Principal/CargarTutores.htm">cargarTutoresController</prop>
                 <prop key="/Principal/Agregar.htm">cargarTutoresController</prop>
+                <prop key="/Principal/Editar.htm">cargarTutoresController</prop>
+                <prop key="/Principal/Eliminar.htm">cargarTutoresController</prop>
                 <prop key="tablaTutores.htm">cargarTutoresController</prop>
-                <prop key="/Principal/editTutor.htm">cargarTutoresController</prop>
                 <prop key="/Principal/CargarAlumnos.htm">cargarAlumnosController</prop>
                 <prop key="/Principal/Seguimiento.htm">seguimientoController</prop>
             </props>
