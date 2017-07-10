@@ -19,7 +19,7 @@ private String telefono;
 private String email;
 private String email2;
 private String direccion;
-
+private int id_usuario;
     public Persona() {
     }
 
@@ -34,6 +34,12 @@ private String direccion;
         this.direccion = direccion;
     }
     
+    public Persona(String nombres, String apellidos,int id_usuario)
+    {
+        this.nombres=nombres;
+        this.apellidos=apellidos;
+        this.id_usuario=id_usuario;
+    }
 
 
     public int getId() {
@@ -99,4 +105,13 @@ private String direccion;
     public void setEmail2(String email2) {
         this.email2 = email2;
     }
+
+    public int getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
+    }
+    
 }

@@ -36,7 +36,8 @@ public class DaoPersonasimpl implements DaoPersonas{
                 .append("telefono,")
                 .append("direccion,")
                 .append("email_1,")
-                .append("email_2 ")
+                .append("email_2,")
+                .append("codigo ")
                 .append("FROM persona as p inner join user as u ")
                 .append("on p.dni=u.persona_dni ")
                 .append("where u.tipo_usuario='")
@@ -59,7 +60,7 @@ public class DaoPersonasimpl implements DaoPersonas{
                 personas.setDireccion(rs.getString(6));
                 personas.setEmail(rs.getString(7));
                 personas.setEmail2(rs.getString(8));
-                
+                personas.setId_usuario(rs.getInt(9));
                 list.add(personas);
             }
 

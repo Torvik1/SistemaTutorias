@@ -5,11 +5,11 @@
 <html>
     <head>
         <meta  charset="UTF-8"/>
-       <!-- <script src="<c:url value="public/js/jquery-3.2.1.min.js"/>" </script>-->
+       <script type="text/javascript" src="<c:url value="/public/js/jquery-3.2.1.min.js"/>"> </script>
         <link rel="stylesheet" href="<c:url value="/public/css/estilo.css"/>"/>
         <link rel="stylesheet" href="<c:url value="/public/css/fonts/style.css"/>"/>
         <link rel="stylesheet" href="<c:url value="/public/css/bootstrap.css"/>"/>
-        
+        <script type="text/javascript" src="<c:url value="/public/js/bootstrap.js"/>"></script>
         <title>GESTION DE TUTORIAS</title>
     </head>
     <body>
@@ -30,61 +30,136 @@
             </nav>   
         </header>
     
-                <div class="container" id="proceso">
-                     <div class="panel panel-primary" id="RegistroProceso">
-                         <div class="panel-heading">
-                          Registro
-                        </div>
-                        <div class="panel-body">
-                            <form:form >
-                            <h2>Programacion Academica</h2>
-                            <p>
-                               
-                            <label> Curso<label>
-                            <select  cssClass="form-control">
-                            <option value="0">Seleccione Curso..</option>
+        <div class="container" id="proceso">
+            <div class="panel panel-primary" id="RegistroProceso">
+                <div class="panel-heading">
+                Registro
+                </div>
+                <div class="panel-body">
+                <form:form role="form" action="/TutoriaFisi/Principal/AgregarProgramacion.htm" method="POST">
+                <input type="hidden" name="id_proceso" value="${id}">
+                <h2>Programacion Academica</h2>
+                    <p>
+                    <label> Curso: </label>
+                    <select  cssClass="form-control" name="id_curso">
+                        <option value="0">Seleccione Curso..</option>
+                        <c:forEach items="${cursos}" var="valor">
+                            <option  value="${valor.id}">${valor.nombre}</option>
+                        </c:forEach>
+                    </select>
+                    </p>
+                                
+                    <p>
+                    <label >Profesor: </label>
+                    <select  cssClass="form-control" name="id_tutor">
+                        <option value="0">Seleccione Tutor..</option>
+                        <c:forEach items="${tutores}" var="tutor">
+                            <option value="${tutor.id_usuario}">${tutor.nombres} ${tutor.apellidos}</option>
+                        </c:forEach>
+                    </select>   
+                    </p>
+ 
+                    <p>
+                    <label> GRUPO nro: </label>
+                    <input type="text" name="nro_grupo" />
+                    </p>
                            
-                            </select>
-                
-                            </p>
-                            <p>
-                                <label >Profesor:</label>
-                                <input  cssClass="form-control" />
-                            </p>
-                           
-                        <hr/>
-                            <button type="button" class="btn btn-danger">
-                             <span>Guardar </span>  
-                             <span class="glyphicon glyphicon-floppy-disk"></span>
-                            </button>
-                            </form:form>
+                    <hr/>
+                    <button type="submit" class="btn btn-danger">
+                        <span>Guardar </span>  
+                        <span class="glyphicon glyphicon-floppy-disk"></span>
+                    </button>
+                </form:form>
                     
                          </div>
                       </div>
             
                     
-                <div class="panel panel-primary" id="PanelProcesos">    
-                   <div class="panel-heading">
-                          Programacion de Cursos
-                        </div>
+        <div class="panel panel-primary" id="PanelProcesos">    
+            <div class="panel-heading">
+            Programacion de Cursos
+            </div>
                     
-                        <table class="table table-bordered table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Curso</th>
-                                    <th>Profesor</th>
-                                    <th>Hora</th>
-                                    <th>Dia</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <td> </td>
-                              
-                            </tbody>
-                        </table>
+            <table class="table table-bordered table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Grupo</th>
+                    <th>Curso</th>
+                    <th>Profesor</th>
+                    <th>Dia/Hora</th>
+                    <th></th>
                     
-                </div> 
+                </tr>
+            </thead>
+            
+            <tbody>
+                <c:forEach items="${programaciones}" var="programacion" >
+                    <tr>
+                        <td>${programacion.grupo}</td>
+                        <td>${programacion.nombre_tutor}</td>
+                        <td>${programacion.nombre_curso}</td>                
+                        <td>
+                            <a href="#${programacion.id}" data-toggle="modal" class="icon-calendar"></a>
+                                            
+                            <div class="modal fade" id="${programacion.id}">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button tytle="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title"> Definir horario </h4>
+                                        </div>
+                                        <form:form role="form" action="/TutoriaFisi/Principal/AgregarHorario.htm" method="POST" class="form-horizontal">
+                                        <input type="hidden" name="id_programacion" value="${programacion.id}">
+                                        <input type="hidden" name="id_proceso" value="${programacion.id_proceso}">
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="email2" class="control-label col-md-2 col-left">Dia:</label>
+                                                <div class="col-md-10">
+                                                    <select  cssClass="form-control" name="id_hora">
+                                                        <option value="0">Seleccione Dia.</option>
+                                                        <c:forEach items="${horarios}" var="hora">
+                                                            <option value="${hora.id}">${hora.dia}:${hora.inicio}-${hora.fin}</option>
+                                                        </c:forEach>
+                                                    </select> 
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>                       
+                                            </div>
+                                        </div>
+                                        <div class=" panel panel primary">
+                                            <table class="table table-bordered table-striped table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                      <th>Dia</th>
+                                                      <th>HoraInicio</th>
+                                                      <th>HoraTermino</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    
+                                                    <tr>
+                                                        <td></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        </form:form>  
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <a href="<c:url value="/Principal/AsignacionAlumnos.htm"/>"  class="icon-users"></a>
+                        </td>
+                    </tr>
+                                    
+                </c:forEach>
+            </tbody>
+            </table>
+                    
+        </div> 
             
         </div>
        

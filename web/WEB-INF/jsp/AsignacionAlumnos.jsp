@@ -41,13 +41,13 @@
                             <h2>Asignacion de Alumnos</h2>
                             <p>
                                
-                            <form:label path="nombres"> Alumno</form:label>
-                            <form:select path="nombres" cssClass="form-control">
-                            <form:option value="0">Elija Alumno</form:option>
-                            <form:option value="1">Manuel Hidalgo Perea</form:option>
-                            <form:option value="2">Melisa Rivera Solis</form:option>
-                            <form:option value="3">Pierina Gonzales Aburto</form:option>
-                            </form:select>
+                            <label > Alumno</label>
+                            <select  cssClass="form-control">
+                            <option value="0">Elija Alumno</option>
+                            <option value="1">Manuel Hidalgo Perea</option>
+                            <option value="2">Melisa Rivera Solis</option>
+                            <option value="3">Pierina Gonzales Aburto</option>
+                            </select>
                 
                             </p>
                             

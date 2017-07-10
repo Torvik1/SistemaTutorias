@@ -79,9 +79,9 @@
                     <option value="0">${valor.email}</option>
                     <option value="1">${valor.email2}</option>
                     </select>
-                    </td>
+                </td>
                     <td>
-                        <a href="#${valor.id}" data-toggle="modal" class="icon-pencil btn btn-danger btn"></a>
+                        <a href="#${valor.id}" data-toggle="modal" class="icon-pencil btn btn-danger"></a>
                                                 
                     <div class="modal fade" id="${valor.id}">
                       <div class="modal-dialog">
@@ -172,7 +172,7 @@
                             </div>
                          </div>
                       </td>
-                                    </tr>
+                        </tr>
                   </c:forEach>
                  </tbody>
                 </table>
