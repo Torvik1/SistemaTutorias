@@ -108,14 +108,14 @@
                                             <button tytle="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                             <h4 class="modal-title"> Definir horario </h4>
                                         </div>
-                                        <form:form role="form" action="/TutoriaFisi/Principal/AgregarHorario.htm" method="POST" class="form-horizontal">
-                                        <input type="hidden" name="id_programacion" value="${programacion.id}">
-                                        <input type="hidden" name="id_proceso" value="${programacion.id_proceso}">
+                                        <form:form>
+                                            <input type="hidden" name="id_programacion" id="id_programacion" value="${programacion.id}">
+                                            <input type="hidden" name="id_proceso" id="id_proceso" value="${programacion.id_proceso}">
                                         <div class="modal-body">
                                             <div class="form-group">
                                                 <label for="email2" class="control-label col-md-2 col-left">Dia:</label>
                                                 <div class="col-md-10">
-                                                    <select  cssClass="form-control" name="id_hora">
+                                                    <select  cssClass="form-control" name="id_hora" id="id_hora">
                                                         <option value="0">Seleccione Dia.</option>
                                                         <c:forEach items="${horarios}" var="hora">
                                                             <option value="${hora.id}">${hora.dia}:${hora.inicio}-${hora.fin}</option>
@@ -124,8 +124,8 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="submit" class="btn btn-primary">Guardar</button>
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>                       
+                                                <button  id="btn-guardar" class="btn btn-primary">Guardar</button>
+                                                <button type="button"  class="btn btn-default" data-dismiss="modal">Cerrar</button>                       
                                             </div>
                                         </div>
                                         <div class=" panel panel primary">
@@ -137,12 +137,9 @@
                                                       <th>HoraTermino</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <div id="tabla_horas">
                                                     
-                                                    <tr>
-                                                        <td></td>
-                                                    </tr>
-                                                </tbody>
+                                                </div>
                                             </table>
                                         </div>
                                         </form:form>  
@@ -162,7 +159,36 @@
         </div> 
             
         </div>
-       
+                            <button id="btn-a"></button>
     </body>
+    
+    
+    
+     <script type="text/javascript">
+         
+        $("#btn-guardar").click(function()
+        {
+            var id_programacion=$('#id_programacion').val();
+            var id_hora=$('#id_hora').val();
+            var id_proceso=$('#id_proceso').val();
+            
+            $.ajax(
+                    {
+                        type:"POST",
+                        url:"/TutoriaFisi/Principal/AgregarHorario.htm",
+                        data:{"id_programacion="  id_programacion "id_hora=" id_hora "id_proceso=" id_proceso
+                             },
+                        success: function(resultado)
+                        {
+                            $("#tabla_horas").html(resultado);
+                        }
+                    }).done(function(){
+                        
+                    }).fail(function(){
+                     
+                    });
+        });
+        
+        </script>
 </html>
 

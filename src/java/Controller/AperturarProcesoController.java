@@ -30,6 +30,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AperturarProcesoController {
     int id_curso_grupo_tutor_actual;
+  //  List<Horario> DatosHorarios;
     
     @RequestMapping("/Principal/AperturarProceso.htm")
    public ModelAndView CargarProcesos()
@@ -70,7 +71,7 @@ public class AperturarProcesoController {
        List<Persona> DatosTutores=new DaoPersonasimpl().personasQry("tutor");
        List<DatosProgra> DatosProgramacion=new DaoPrograimpl().programacionQry();
        List<Horario> DatosHorario=new DaoHorarioimpl().horariosQry();
-       List<Horario> DatosGrupoHorario=new DaoHorarioimpl().horariosGrupo(id_curso_grupo_tutor_actual);
+       
        String id = request.getParameter("id");
        
        programacion.addObject("id",id);
@@ -78,6 +79,7 @@ public class AperturarProcesoController {
        programacion.addObject("tutores", DatosTutores);
        programacion.addObject("programaciones", DatosProgramacion);
        programacion.addObject("horarios", DatosHorario);
+     //  programacion.addObject("DatosHorario",DatosHorarios);
        programacion.setViewName("ProgramacionAcademica");
         
        return programacion;
@@ -106,7 +108,7 @@ public class AperturarProcesoController {
     }
     
     @RequestMapping(value = "/Principal/AgregarHorario.htm", method = RequestMethod.POST)
-    public String AgregarHorario
+    public ModelAndView AgregarHorario
         (@RequestParam("id_hora") String id_hor,
         @RequestParam("id_programacion") String id_progra,
         @RequestParam("id_proceso") String id_proceso
@@ -115,11 +117,14 @@ public class AperturarProcesoController {
         int id_hora=Integer.parseInt(id_hor);
         int id_programacion=Integer.parseInt(id_progra);
         
+        ModelAndView mav=new ModelAndView("tabla_horas");
         GrupoHorario gp=new GrupoHorario(id_programacion,id_hora);
         String mensaje=new DaoGrupoHorarioimpl().grupoHorarioins(gp);
+        List<Horario> DatosHorarios=new DaoHorarioimpl().horariosGrupo(id_programacion);
         System.out.print(mensaje);
-        
-        return "redirect:/Principal/ProgramacionAcademica.htm?id="+id_proceso;
+        mav.addObject("horarios",DatosHorarios);
+        return mav;
+       // return "redirect:/Principal/ProgramacionAcademica.htm?id="+id_proceso;
     }
     
     

@@ -276,10 +276,6 @@
     <script type="text/javascript">
         
         
-        
-        
-        
-        
         $("#btn-ajax").click(function()
         {
             $.ajax(
