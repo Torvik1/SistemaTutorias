@@ -85,7 +85,7 @@
                 <tr>
                     <th>Grupo</th>
                     <th>Curso</th>
-                    <th>Profesor</th>
+                    <th>Profesore</th>
                     <th>Dia/Hora</th>
                     <th></th>
                     
