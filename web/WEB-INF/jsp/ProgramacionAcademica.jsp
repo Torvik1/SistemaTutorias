@@ -99,7 +99,7 @@
                         <td>${programacion.nombre_tutor}</td>
                         <td>${programacion.nombre_curso}</td>                
                         <td>
-                            <a href="#${programacion.id}" data-toggle="modal" class="icon-calendar"></a>
+                            <button type="button" data-target="#${programacion.id}" data-id="${programacion.id}" data-toggle="modal" class="icon-calendar" id="btn-listar"></button>
                                             
                             <div class="modal fade" id="${programacion.id}">
                                 <div class="modal-dialog">
@@ -113,14 +113,15 @@
                                         <input type="hidden" name="id_proceso" value="${programacion.id_proceso}">
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label for="email2" class="control-label col-md-2 col-left">Dia:</label>
+                                                <label for="dia" class="control-label col-md-2 col-left">Dia:</label>
                                                 <div class="col-md-10">
                                                     <select  cssClass="form-control" name="id_hora">
                                                         <option value="0">Seleccione Dia.</option>
                                                         <c:forEach items="${horarios}" var="hora">
                                                             <option value="${hora.id}">${hora.dia}:${hora.inicio}-${hora.fin}</option>
                                                         </c:forEach>
-                                                    </select> 
+                                                    </select>
+                                                    
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
@@ -137,11 +138,9 @@
                                                       <th>HoraTermino</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody class="PanelTablaHorarios">
                                                     
-                                                    <tr>
-                                                        <td></td>
-                                                    </tr>
+                                                    
                                                 </tbody>
                                             </table>
                                         </div>
@@ -161,8 +160,36 @@
                     
         </div> 
             
-        </div>
-       
+        </div>                        
     </body>
+    
+     <script type="text/javascript">
+        
+        
+        
+        
+        
+        
+        $(".icon-calendar").click(function()
+        {
+            var idprogramacion=$(this).data('id');
+            $.ajax(
+                    {
+                        type:"GET",
+                        url:"/TutoriaFisi/tablaHorarios.htm?id="+idprogramacion,
+                        data:{},
+                        success: function(resultado)
+                        {
+                            $(".PanelTablaHorarios").html(resultado);
+                        }
+                    }).done(function(){
+                        
+                    }).fail(function(){
+                     
+                    });
+        });
+        
+        </script>
+    
 </html>
 

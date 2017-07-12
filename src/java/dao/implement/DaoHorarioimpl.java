@@ -65,7 +65,7 @@ public class DaoHorarioimpl implements DaoHorario {
          List<Horario> list = null;
         sql.delete(0, sql.length())
                 .append("SELECT ")
-                .append("programacion_academica.oid")
+                .append("programacion_academica.oid,")
                 .append("dia,")
                 .append("hora_inicio,")
                 .append("hora_fin ")

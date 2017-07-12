@@ -70,7 +70,7 @@ public class AperturarProcesoController {
        List<Persona> DatosTutores=new DaoPersonasimpl().personasQry("tutor");
        List<DatosProgra> DatosProgramacion=new DaoPrograimpl().programacionQry();
        List<Horario> DatosHorario=new DaoHorarioimpl().horariosQry();
-       List<Horario> DatosGrupoHorario=new DaoHorarioimpl().horariosGrupo(id_curso_grupo_tutor_actual);
+      
        String id = request.getParameter("id");
        
        programacion.addObject("id",id);
@@ -122,8 +122,25 @@ public class AperturarProcesoController {
         return "redirect:/Principal/ProgramacionAcademica.htm?id="+id_proceso;
     }
     
+    @RequestMapping( "tablaHorarios.htm")
+    public ModelAndView horarios(
+           HttpServletRequest request
+    )
+    {
+        ModelAndView mav=new ModelAndView("tablaHorarios");
+        int id_programacion=Integer.parseInt(request.getParameter("id"));
+        List<Horario> DatosGrupoHorario=new DaoHorarioimpl().horariosGrupo(id_programacion);
+        mav.addObject("horas",DatosGrupoHorario);
+        mav.addObject("hor",id_programacion);
+        System.out.print(id_programacion);
+    return mav;
+    }
     
-    
+        
+        
+        
+        
+        
     public void ListaCursos(ModelAndView mav)
     {
         List<Curso> curso=new DaoCursoimpl().cursosQry();
