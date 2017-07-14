@@ -27,6 +27,7 @@
                 <prop key="/Principal/AgregarProgramacion.htm">aperturarController</prop>
                 <prop key="/Principal/AgregarHorario.htm">aperturarController</prop>
                 <prop key="/Principal/AsignacionAlumnos.htm">aperturarController</prop>
+                <prop key="/Principal/AgregarPAtutorando.htm">aperturarController</prop>
                 <prop key="/Principal/CargarTutores.htm">cargarTutoresController</prop>
                 <prop key="/Principal/Agregar.htm">cargarTutoresController</prop>
                 <prop key="/Principal/Editar.htm">cargarTutoresController</prop>

@@ -59,7 +59,7 @@ public class DaoPrograimpl implements DaoProgramacion{
     }
 
     @Override
-    public List<DatosProgra> programacionQry() {
+    public List<DatosProgra> programacionQry(int id_proceso) {
         List<DatosProgra> list = null;
         sql.delete(0, sql.length())
                 .append("SELECT ")
@@ -70,7 +70,9 @@ public class DaoPrograimpl implements DaoProgramacion{
                 .append("persona.nombres,")
                 .append("persona.apellidos ")
                 .append("FROM proceso,curso,user,curso_grupo_tutor,persona ")
-                .append("where curso_grupo_tutor.curso_oid=curso.oid and curso_grupo_tutor.user_codigo=user.codigo and curso_grupo_tutor.proceso_oid=proceso.oid and persona.dni=user.persona_dni");
+                .append("where curso_grupo_tutor.curso_oid=curso.oid and curso_grupo_tutor.user_codigo=user.codigo and curso_grupo_tutor.proceso_oid=proceso.oid and persona.dni=user.persona_dni and proceso.oid=")
+                .append(id_proceso);
+                
                 
                try (Connection cn = db.getConnection();
                 PreparedStatement ps = cn.prepareStatement(sql.toString());

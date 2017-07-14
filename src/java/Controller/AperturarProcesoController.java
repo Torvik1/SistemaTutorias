@@ -5,6 +5,7 @@ import dto.DatosProgra;
 import dao.implement.DaoCursoimpl;
 import dao.implement.DaoGrupoHorarioimpl;
 import dao.implement.DaoHorarioimpl;
+import dao.implement.DaoPAtutorandoimpl;
 import dao.implement.DaoPersonasimpl;
 import dao.implement.DaoProcesoimpl;
 import dao.implement.DaoPrograimpl;
@@ -12,6 +13,7 @@ import dto.Alumno;
 import dto.Curso;
 import dto.GrupoHorario;
 import dto.Horario;
+import dto.PAtutorando;
 import dto.Persona;
 import dto.ProcesoTutoria;
 import dto.ProgramacionAcademica;
@@ -29,7 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AperturarProcesoController {
-    int id_curso_grupo_tutor_actual;
+    
     
     @RequestMapping("/Principal/AperturarProceso.htm")
    public ModelAndView CargarProcesos()
@@ -65,13 +67,15 @@ public class AperturarProcesoController {
     @RequestMapping("/Principal/ProgramacionAcademica.htm")
     public ModelAndView ProgramacionAcademica(HttpServletRequest request)
    {
+        String id = request.getParameter("id");
+        
        ModelAndView programacion=new ModelAndView();
        List<Curso> Datocursos=new DaoCursoimpl().cursosQry();
        List<Persona> DatosTutores=new DaoPersonasimpl().personasQry("tutor");
-       List<DatosProgra> DatosProgramacion=new DaoPrograimpl().programacionQry();
+       List<DatosProgra> DatosProgramacion=new DaoPrograimpl().programacionQry(Integer.parseInt(id));
        List<Horario> DatosHorario=new DaoHorarioimpl().horariosQry();
       
-       String id = request.getParameter("id");
+      
        
        programacion.addObject("id",id);
        programacion.addObject("cursos",Datocursos);
@@ -151,10 +155,33 @@ public class AperturarProcesoController {
    
    @RequestMapping("/Principal/AsignacionAlumnos.htm")
    public ModelAndView AsignacionAlumnos(
+           HttpServletRequest request
    )       
    {
+       String id_progra=request.getParameter("id");
+       List<Persona> DatosTutorandos=new DaoPersonasimpl().personasQry("tutorando");
+       List<Persona> datosPAtutorando=new DaoPAtutorandoimpl().PAtutorandoqry(Integer.parseInt(id_progra));
        ModelAndView asignacion=new ModelAndView();
        asignacion.setViewName("AsignacionAlumnos");
+       asignacion.addObject("tutorandos", DatosTutorandos);
+       asignacion.addObject("PAtutorando", datosPAtutorando);
+       asignacion.addObject("id", id_progra);
        return asignacion;
    }
+   
+   @RequestMapping(value = "/Principal/AgregarPAtutorando.htm", method = RequestMethod.POST)
+   public String AgregarPAtutorando
+   (@RequestParam ("id_tutorando") String id_tutorando,
+    @RequestParam ("id_programacion_academica") String programacion_a
+   )
+   {
+       int id_observado=Integer.parseInt(id_tutorando);
+       int id_programacion= Integer.parseInt(programacion_a);
+       PAtutorando patutorando=new PAtutorando(id_observado,id_programacion);
+       String mensaje=new DaoPAtutorandoimpl().PAtutorandoIns(patutorando);
+       
+    return "redirect:/Principal/AsignacionAlumnos.htm?id="+programacion_a;
+   }
+   
+   
 }

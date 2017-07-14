@@ -83,11 +83,11 @@
             <table class="table table-bordered table-striped table-bordered">
             <thead>
                 <tr>
-                    <th>Grupo</th>
-                    <th>Curso</th>
-                    <th>Profesore</th>
-                    <th>Dia/Hora</th>
-                    <th></th>
+                    <th style="text-align:center">Grupo</th>
+                    <th style="text-align:center">Profesor</th>
+                    <th style="text-align:center">Curso</th>
+                    <th style="text-align:center">Dia/Hora</th>
+                    <th style="text-align:center">Asingar<br>Alumno</th>
                     
                 </tr>
             </thead>
@@ -95,10 +95,10 @@
             <tbody>
                 <c:forEach items="${programaciones}" var="programacion" >
                     <tr>
-                        <td>${programacion.grupo}</td>
-                        <td>${programacion.nombre_tutor}</td>
-                        <td>${programacion.nombre_curso}</td>                
-                        <td>
+                        <td style="text-align:center">${programacion.grupo}</td>
+                        <td style="text-align:center">${programacion.nombre_tutor}</td>
+                        <td style="text-align:center">${programacion.nombre_curso}</td>                
+                        <td style="text-align: center">
                             <button type="button" data-target="#${programacion.id}" data-id="${programacion.id}" data-toggle="modal" class="icon-calendar" id="btn-listar"></button>
                                             
                             <div class="modal fade" id="${programacion.id}">
@@ -149,8 +149,8 @@
                                 </div>
                             </div>
                         </td>
-                        <td>
-                            <a href="<c:url value="/Principal/AsignacionAlumnos.htm"/>"  class="icon-users"></a>
+                        <td style="text-align: center">
+                        <a href="<c:url value="/Principal/AsignacionAlumnos.htm?id=${programacion.id}"/>"  class="icon-users" ></a>
                         </td>
                     </tr>
                                     
@@ -163,12 +163,12 @@
         </div>                        
     </body>
     
+    
+    
+    
+    
+    
      <script type="text/javascript">
-        
-        
-        
-        
-        
         
         $(".icon-calendar").click(function()
         {

@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface DaoProgramacion {
     public String programacionIns(ProgramacionAcademica programacion);
-    public List<DatosProgra> programacionQry();
+    public List<DatosProgra> programacionQry(int id_proceso);
 }

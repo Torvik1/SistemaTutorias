@@ -37,22 +37,22 @@
                           Registro
                         </div>
                         <div class="panel-body">
-                            <form:form >
+                            <form:form action="/TutoriaFisi/Principal/AgregarPAtutorando.htm" method="POST" >
+                                <input type="hidden" name="id_programacion_academica" value="${id}"/>
                             <h2>Asignacion de Alumnos</h2>
                             <p>
-                               
                             <label > Alumno</label>
-                            <select  cssClass="form-control">
+                            <select  cssClass="form-control" name="id_tutorando">
                             <option value="0">Elija Alumno</option>
-                            <option value="1">Manuel Hidalgo Perea</option>
-                            <option value="2">Melisa Rivera Solis</option>
-                            <option value="3">Pierina Gonzales Aburto</option>
+                           <c:forEach items="${tutorandos}" var="tutorando">
+                            <option value="${tutorando.id_usuario}">${tutorando.nombres} ${tutorando.apellidos}</option>
+                            </c:forEach>
                             </select>
                 
                             </p>
                             
                         <hr/>
-                            <button type="button" class="btn btn-danger btn-lg">
+                            <button type="submit" class="btn btn-danger btn-lg">
                              <span>Agregar </span>  
                              <span class="glyphicon glyphicon-plus"></span>
                             </button>
@@ -64,7 +64,7 @@
                     
                 <div class="panel panel-primary" id="PanelProcesos">    
                    <div class="panel-heading">
-                          Lista de Alumnosn en el Curso
+                          Lista de Alumnos en el Curso
                         </div>
                     
                         <table class="table table-bordered table-striped table-bordered">
@@ -78,28 +78,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td>Pierina</td>
-                                    <td>Gonzales Aburto</td>
-                                    <td>pierina.gonzales@unmsm.edu.pe</td>
-                                    <td>
-                                        <a href="" >
-                                          <span class="icon-remove-user" id="iconosAsignacion"></span>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>11200013</td>
-                                    <td>Melisa</td>
-                                    <td>Rivera Solis</td>
-                                    <td>melisa.rivera@gmail.com</td>
-                                    <td >
-                                        <a href="" >
-                                        <span class="icon-remove-user" id="iconosAsignacion"></span>
-                                        </a>
-                                    </td>
-                                </tr>
+                                <c:forEach items="${PAtutorando}" var="dato">
+                                    <tr>
+                                        <td>dato.id</td>
+                                        <td>dato.nombres</td>
+                                        <td>dato.apellidos</td>
+                                        <td>dato.telefono</td>
+                                    </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                     

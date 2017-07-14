@@ -41,6 +41,18 @@ private int id_usuario;
         this.id_usuario=id_usuario;
     }
 
+    public Persona(String nombres, String apellidos, String telefono, String email, String email2, int id_usuario,int id) {
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.telefono = telefono;
+        this.email = email;
+        this.email2 = email2;
+        this.id_usuario = id_usuario;
+        this.id=id;
+    }
+    
+    
+
 
     public int getId() {
         return id;
